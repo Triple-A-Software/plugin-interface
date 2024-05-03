@@ -1,0 +1,25 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "plugin.schema.json",
+    "type": "object",
+    "description": "The plugin schema",
+    "properties": {
+        "name": {
+            "type": "string",
+            "description": "The name of the plugin",
+            "pattern": "^[a-zA-Z0-9-_]+$",
+            "minLength": 1
+        },
+        "version": {
+            "type": "string",
+            "description": "The version of the plugin, in semver format",
+            "pattern": "^\\d+\\.\\d+\\.\\d+$",
+            "minLength": 1
+        },
+        "main": {
+            "type": "string",
+            "description": "The entry point of the plugin",
+            "minLength": 1
+        }
+    }
+}
