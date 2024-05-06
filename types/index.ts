@@ -1,4 +1,4 @@
-import type { SchemaOutput } from "form-structure";
+import type { SchemaOutput } from "@aaa-soft/form-structure";
 
 export type PluginMetadata = {
     name: string;
