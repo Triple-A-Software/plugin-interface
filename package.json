@@ -10,7 +10,7 @@
         "@types/bun": "latest"
     },
     "dependencies": {
-        "form-structure": "git+ssh://github.com/Triple-A-Software/form-structure.git"
+        "@aaa-soft/form-structure": "git@github.com:Triple-A-Software/form-structure.git"
     },
     "peerDependencies": {
         "typescript": "^5.0.0"
