@@ -1,7 +1,8 @@
 {
     "name": "@aaa-soft/plugin-interface",
     "version": "0.0.0",
-    "main": "index.ts",
+    "module": "index.ts",
+    "type": "module",
     "scripts": {
         "format": "bunx biome check --apply-unsafe . && biome format --write ."
     },
@@ -14,11 +15,5 @@
     },
     "peerDependencies": {
         "typescript": "^5.0.0"
-    },
-    "exports": {
-        ".": {
-            "types": "./index.ts",
-            "default": "./index.ts"
-        }
     }
 }
