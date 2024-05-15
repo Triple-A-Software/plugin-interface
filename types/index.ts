@@ -212,7 +212,7 @@ export type PluginHooks = {
          * Returns all Data for the Plugin, where the DataObject starts With the given Filter as Key
          * @param filter Key of the root Object of the DataEntry. ex "submission" for subbmission:{...}
          */
-        getAllWithFilter: (filter: string) => Promise<Record<string, any>[]>;
+        getAllWithFilter: (filter: string) => Promise<DataEntry[] | undefined>;
         /**
          * Returns on row of data with the givin id, stored on the database
          * @params key unique of the table row in the database, is returend by createOne()
