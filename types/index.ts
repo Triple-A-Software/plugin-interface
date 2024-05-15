@@ -18,6 +18,7 @@ export type Action = {
 export type ActionHandler = {
     method: string;
     url: string;
+    redirect?: string;
 };
 
 type FormSettingsPage = {
