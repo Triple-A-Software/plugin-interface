@@ -1,4 +1,5 @@
 import type { SchemaOutput } from "@aaa-soft/form-structure";
+import type { Label } from "./general";
 
 export type PluginMetadata = {
     name: string;
@@ -11,7 +12,7 @@ export type Plugin = (cms: PluginHooks) => void | Promise<void>;
 export type Action = {
     primary?: boolean;
     tooltip?: Record<string, string>;
-    label: Record<string, string>;
+    label: Label;
     handler: ActionHandler;
 };
 
@@ -32,7 +33,7 @@ export type ListSettingsPage = {
     getDataHandler: ActionHandler;
     columns: Array<{
         key: string;
-        label: Record<"en" | "de" | string, string>;
+        label: Label;
     }>;
     actions: {
         icon: string;
@@ -47,7 +48,7 @@ export type ListSettingsPage = {
 };
 
 export type SettingsPage = {
-    label: Record<"en" | "de" | string, string>;
+    label: Label;
 } & (FormSettingsPage | ListSettingsPage);
 
 export type RewriteHandler = (rewriter: HTMLRewriter) => void;
@@ -104,7 +105,8 @@ type DataEntry = {
     deletedAt?: Date | null;
     deletedBy?: string | null;
 };
-
+// TODO: improve pluginhooks layout, maybe put all functions intended to be used in setup of the plugin into an `init` key, 
+// and all functions intended to be used at runtime into a `runtime` key
 export type PluginHooks = {
     /**
      * Send a Mail with the Mailer instance of the CMS
@@ -112,7 +114,7 @@ export type PluginHooks = {
      * @param to Recipient of the mail
      * @param mail body of the mail
      */
-    sendMail: (title: string, to: string, mail: string) => void;
+    sendMail: (title: string, to: string, mail: string) => Promise<void>;
     /**
      * Register a Page shown in the Settingstab.
      * @param id unique id of the Settings page
