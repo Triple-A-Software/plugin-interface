@@ -1,4 +1,4 @@
-import type { SchemaOutput } from "@aaa-soft/form-structure";
+import type { ItemOutput } from "@aaa-soft/form-structure";
 import type { Label } from "./general";
 
 export type BuilderItem = {
@@ -17,7 +17,7 @@ export type BuilderItem = {
     /**
      * A set of inputs users can use to modify the details of this item.
      */
-    props: Array<SchemaOutput>;
+    props: Array<BuilderItemProp>;
     /**
      * The data structure the user can modify with the given props inputs
      */
@@ -28,3 +28,5 @@ export type BuilderItem = {
      */
     template: string;
 };
+
+export type BuilderItemProp = ItemOutput;
