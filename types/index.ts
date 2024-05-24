@@ -94,7 +94,7 @@ export type RegisterHandlerReturn = {
     toFormAttributes: (method?: string) => string;
     toActionHandler: (method?: string) => ActionHandler;
 };
-type DataEntry<T = unknown> = {
+export type DataEntry<T = unknown> = {
     id: number;
     pluginId: string;
     data: T;
