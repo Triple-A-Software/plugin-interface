@@ -94,10 +94,10 @@ export type RegisterHandlerReturn = {
     toFormAttributes: (method?: string) => string;
     toActionHandler: (method?: string) => ActionHandler;
 };
-type DataEntry = {
+type DataEntry<T = unknown> = {
     id: number;
     pluginId: string;
-    data: unknown;
+    data: T;
     createdBy: string;
     updatedBy: string;
     createdAt: Date;
@@ -105,9 +105,13 @@ type DataEntry = {
     deletedAt?: Date | null;
     deletedBy?: string | null;
 };
-// TODO: improve pluginhooks layout, maybe put all functions intended to be used in setup of the plugin into an `init` key, 
+// TODO: improve pluginhooks layout, maybe put all functions intended to be used in setup of the plugin into an `init` key,
 // and all functions intended to be used at runtime into a `runtime` key
 export type PluginHooks = {
+    /**
+     * Get the id for this plugin
+     */
+    pluginId(): string;
     /**
      * Send a Mail with the Mailer instance of the CMS
      * @param title of the Mail
@@ -209,38 +213,38 @@ export type PluginHooks = {
          * Returns all data of the Plugin, stored on the database
          * @see https://docs.simpl-cms.de/plugins/defineplugin/storage/getall for more information
          */
-        getAll: () => Promise<DataEntry[]>;
+        getAll<T = unknown>(): Promise<DataEntry<T>[]>;
         /**
          * Returns all Data for the Plugin, where the DataObject starts With the given Filter as Key
          * @param filter Key of the root Object of the DataEntry. ex "submission" for subbmission:{...}
          */
-        getAllWithFilter: (filter: string) => Promise<DataEntry[] | undefined>;
+        getAllWithFilter<T = unknown>(filter: string): Promise<DataEntry<T>[] | undefined>;
         /**
          * Returns on row of data with the givin id, stored on the database
          * @params key unique of the table row in the database, is returend by createOne()
          * @see https://docs.simpl-cms.de/plugins/defineplugin/storage/getOne for more information
          */
-        getOne: (key: number) => Promise<DataEntry | undefined>;
+        getOne<T = unknown>(key: number): Promise<DataEntry<T> | undefined>;
         /**
          * Updated data with given key of the Plugin, stored on the database.
          * @params key unique of the table row in the database, is returend by createOne()
          * @params value data to update
          * @see https://docs.simpl-cms.de/plugins/defineplugin/storage/updateone for more information
          */
-        updateOne: (key: number, value: unknown) => Promise<DataEntry | undefined>;
+        updateOne<T = unknown>(key: number, value: unknown): Promise<DataEntry<T> | undefined>;
         /**
          * Creates an Entry in the Database with Plugin name as identifier
          * @params value data to create
          * @returns the Stored data and the database id, so it can be accessed later if needed
          * @see https://docs.simpl-cms.de/plugins/defineplugin/storage/createone for more information
          */
-        createOne: (value: unknown) => Promise<DataEntry | undefined>;
+        createOne<T = unknown>(value: unknown): Promise<DataEntry<T> | undefined>;
         /**
          * deletes one Database entry with the given key
          * @params key unique id to identify row which should be deleted
          * @params plugin_id (optional) subset of plugin_id
          * @see https://docs.simpl-cms.de/plugins/defineplugin/storage/deleteone for more information
          */
-        deleteOne: (key: number, plugin_id?: string) => Promise<{ id: number } | undefined>;
+        deleteOne(key: number, plugin_id?: string): Promise<{ id: number } | undefined>;
     };
 };
