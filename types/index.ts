@@ -105,6 +105,10 @@ type DataEntry<T = unknown> = {
     deletedAt?: Date | null;
     deletedBy?: string | null;
 };
+
+type IntoResponse = string | Response | Record<string, unknown>;
+type MaybePromise<T> = T | Promise<T>;
+
 // TODO: improve pluginhooks layout, maybe put all functions intended to be used in setup of the plugin into an `init` key,
 // and all functions intended to be used at runtime into a `runtime` key
 export type PluginHooks = {
@@ -138,7 +142,7 @@ export type PluginHooks = {
     registerHandler: (
         methods: string[],
         path: string,
-        handler: (data: HandlerParam) => string | Response | Promise<string | Response>,
+        handler: (data: HandlerParam) => MaybePromise<IntoResponse>,
         options?: {
             allowedRoles?: ("admin" | "developer" | "editor" | "author" | "public")[];
         },
