@@ -106,7 +106,7 @@ type DataEntry<T = unknown> = {
     deletedBy?: string | null;
 };
 
-type IntoResponse = string | Response | Record<string, unknown>;
+type IntoResponse = string | Response | Record<string, unknown> | unknown[];
 type MaybePromise<T> = T | Promise<T>;
 
 // TODO: improve pluginhooks layout, maybe put all functions intended to be used in setup of the plugin into an `init` key,
