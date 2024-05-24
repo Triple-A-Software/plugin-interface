@@ -144,6 +144,10 @@ export type PluginHooks = {
         path: string,
         handler: (data: HandlerParam) => MaybePromise<IntoResponse>,
         options?: {
+            /**
+             * Which roles should be able to access this api endpoint?
+             * If you want to define an endpoint for your admin-ui integration, this should be not set to an empty array and not include "public".
+             */
             allowedRoles?: ("admin" | "developer" | "editor" | "author" | "public")[];
         },
     ) => RegisterHandlerReturn; // TODO: this return value should allow the plugin author to easily access this handler in the code of his plugin, what should this be?
