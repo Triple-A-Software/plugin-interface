@@ -54,7 +54,7 @@ export type SettingsPage = {
 export type RewriteHandler = (rewriter: HTMLRewriter) => void;
 export type ServerHandler = {
     methods: string[];
-    handler: (data: HandlerParam) => string | Response | Promise<string | Response>;
+    handler: (data: HandlerParam) => MaybePromise<IntoResponse>;
     options?: {
         allowedRoles?: ("admin" | "developer" | "editor" | "author" | "public")[];
     };
