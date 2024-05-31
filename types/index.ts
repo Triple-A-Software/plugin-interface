@@ -1,5 +1,6 @@
 import type { SchemaOutput } from "@aaa-soft/form-structure";
 import type { Label } from "./general";
+import type { Hookable } from "hookable";
 
 export type PluginMetadata = {
     name: string;
@@ -193,9 +194,7 @@ export type PluginHooks = {
     /**
      * This is not yet implemented
      */
-    hooks: {
-        on: (hook: string, fn: () => void) => void; // this should be hookable https://unjs.io/packages/hookable
-    };
+    hooks: Hookable;
     /**
      * Outputs information in the console of the CMS-Instance.
      * @see https://docs.simpl-cms.de/plugins/defineplugin/logger for more information
