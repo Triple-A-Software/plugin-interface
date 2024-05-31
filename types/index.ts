@@ -192,9 +192,11 @@ export type PluginHooks = {
      */
     registerPublicFile: (filename: string) => string;
     /**
-     * This is not yet implemented
+     * Use the Hookable instance of the CMS instance to trigger actions and react to events.
+     * You should only use this, if the other available functions on `ctx` don't do what you want.
+     * @see https://unjs.io/packages/hookable for more information on usage
      */
-    hooks: Hookable;
+    hooks: Hookable; // TODO: maybe specify the available events here
     /**
      * Outputs information in the console of the CMS-Instance.
      * @see https://docs.simpl-cms.de/plugins/defineplugin/logger for more information
