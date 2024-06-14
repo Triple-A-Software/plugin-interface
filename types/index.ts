@@ -68,6 +68,7 @@ export type ElementType = {
     script: string;
     style: string;
     form: SchemaOutput;
+    category: "text" | "design" | "interactive" | "layout" | "misc" | "media";
 };
 export type PageLayout = {
     name: string;
