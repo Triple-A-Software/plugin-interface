@@ -5,8 +5,21 @@ import type { Hookable } from "hookable";
 export type PluginMetadata = {
     name: string;
     version: string;
+    files: Array<string>;
+    build?: string;
+} & (ServiceMetadata | ModuleMetadata);
+
+type ServiceMetadata = {
+    type: "service";
+    bin: string;
+    routes?: Record<string, { type: "page" | "api" | "file", layout?: { name: string, slot: string } }>
+    env?: Record<string, string>
+}
+
+type ModuleMetadata = {
+    type: "module";
     main: string;
-};
+}
 
 export type Plugin = (cms: PluginHooks) => void | Promise<void>;
 
