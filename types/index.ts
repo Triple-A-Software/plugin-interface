@@ -12,14 +12,17 @@ export type PluginMetadata = {
 type ServiceMetadata = {
     type: "service";
     bin: string;
-    routes?: Record<string, { type: "page" | "api" | "file", layout?: { name: string, slot: string } }>
-    env?: Record<string, string>
-}
+    routes?: Record<
+        string,
+        { type: "page" | "api" | "file"; layout?: { name: string; slot: string } }
+    >;
+    env?: Record<string, string>;
+};
 
 type ModuleMetadata = {
     type: "module";
     main: string;
-}
+};
 
 export type Plugin = (cms: PluginHooks) => void | Promise<void>;
 
@@ -81,6 +84,7 @@ export type ElementType = {
     script: string;
     style: string;
     form: SchemaOutput;
+    canHaveChildren?: boolean | undefined;
     category: "text" | "design" | "interactive" | "layout" | "misc" | "media";
 };
 export type PageLayout = {
